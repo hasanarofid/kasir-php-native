@@ -79,10 +79,16 @@
 <br>
           <input type="hidden" class="form-control" required name="status_s" id="status_s" value="Diservice">
 
-&emsp;&emsp;&emsp;    <a href="print_service.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>
-									&bayar=<?php echo $bayar;?>" target="_blank">
-                                    <button class="btn btn-secondary">
-                                        <i class="fa fa-print"></i> &nbsp; Print Struk Transaksi
-                                    </button></a>
+&emsp;&emsp;&emsp;    
+<?php
+// Periksa apakah parameter 'bayar' sudah diatur dalam URL
+if(isset($_GET['bayar'])) {
+    // Jika sudah diatur, tambahkan tautan untuk mencetak struk transaksi
+    echo '<a class="btn btn-secondary" href="fungsi/print/print_service.php?nm_member=' . $_SESSION['admin']['nm_member'] . '&bayar=' . $_GET['bayar'] . '" target="_blank">';
+    echo '<i class="fa fa-print"></i> &nbsp; Print Struk Transaksi';
+    echo '</a>';
+}
+?>
+
   </form>
 </div>

@@ -45,7 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['service'])) {
 
     if ($stmt->rowCount() > 0) {
         // Redirect to success page
-        echo '<script>window.location="../../index.php?page=service&success=tambah-data"</script>';
+        // Get the ID of the last inserted service
+$id_service_baru = $config->lastInsertId();
+
+// Redirect to success page with the ID of the new service
+echo '<script>window.location="../../index.php?page=service&success=tambah-data&bayar=' . $id_service_baru . '"</script>';
+
+        // echo '<script>window.location="../../index.php?page=service&success=tambah-data"</script>';
         exit(); // stop further execution
     } else {
         // Handle insertion failure (e.g., database error)
