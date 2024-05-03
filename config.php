@@ -18,10 +18,11 @@
 date_default_timezone_set("Asia/Jakarta");
 error_reporting(0);
 
+
 	// sesuaikan dengan server anda
 	$host 	= 'localhost'; // host server
 	$user 	= 'root';  // username server
-	$pass 	= 'hasanitki'; // password server, kalau pakai xampp kosongin saja
+	$pass 	= ''; // password server, kalau pakai xampp kosongin saja
 	$dbname = 'cjafwtqt_kasir'; // nama database anda
 	
 	try{

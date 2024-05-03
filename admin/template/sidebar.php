@@ -49,6 +49,7 @@
         </div>
     </li>
         <li class="nav-item active">
+        <a class="nav-link" href="index.php?page=jual">
             <i class="fas fa-fw fa-desktop"></i>
             <span>Kasir</span></a>
     </li>
