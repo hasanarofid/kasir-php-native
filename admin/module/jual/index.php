@@ -139,7 +139,8 @@ $hasil_penjualan = $lihat->penjualan();
                         $sql = "INSERT INTO nota (id_barang,id_member,jumlah,total,tanggal_input,periode,pelanggan,alamat,hp) VALUES (?,?,?,?,?,?,?,?,?)";
                         $row = $config->prepare($sql);
                         $row->execute($d);
-
+						$id_service_baru = $config->lastInsertId();
+						// var_dump($id_service_baru);die;
                         // Ubah stok barang
                         $sql_barang = "SELECT * FROM barang WHERE id_barang = ?";
                         $row_barang = $config->prepare($sql_barang);
@@ -154,7 +155,14 @@ $hasil_penjualan = $lihat->penjualan();
                         $row_stok = $config->prepare($sql_stok);
                         $row_stok->execute(array($total_stok, $idb));
                     }
+
+					// $id = $row->id;
+					// var_dump($id);die;
+
+					// Redirect to success page with the ID of the new service
+					// echo '<script>window.location="../../index.php?page=jual&success=tambah-data&id=' . $id . '"</script>';
                     echo '<script>alert("Belanjaan Berhasil Di Bayar !");</script>';
+
                 } else {
                     echo '<script>alert("Uang Kurang ! Rp.' . $hitung . '");</script>';
                 }
@@ -199,7 +207,7 @@ $hasil_penjualan = $lihat->penjualan();
 								<td><input type="text" class="form-control" value="<?php echo $hitung;?>"></td>
 								<td></td>
 								<td>
-<a href="print.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>" target="_blank">
+<a href="print.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>&bayar=<?php echo $bayar;?>&kembali=<?php echo $hitung;?>&id_service_baru=<?php echo $id_service_baru;?>" target="_blank">
     <button class="btn btn-secondary">
         <i class="fa fa-print"></i> &nbsp; Print Struk Transaksi
     </button>

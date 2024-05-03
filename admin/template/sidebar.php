@@ -74,6 +74,21 @@
             <i class="fas fa-fw fa-book"></i>
             <span>Laporan Service</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="index.php?page=laporanbarang">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Laporan Barang</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="index.php?page=laporanbarangmasuk">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Laporan Barang Masuk</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="index.php?page=laporanbarangkeluar">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Laporan Barang Keluar</span></a>
+    </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <!--<li class="nav-item active">-->
     <!--    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true"-->

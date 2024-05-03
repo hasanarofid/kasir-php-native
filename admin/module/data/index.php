@@ -83,7 +83,7 @@
     <?php } else if ($isi['status_s'] == 'Selesai') {?>
         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#bayar<?php echo $isi['id_service'];?>">Bayar</button>
     <?php } else{?>
-        <a href="print_s.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>" target="_blank">
+        <a href="print_s.php?nm_member=<?php echo $_SESSION['admin']['nm_member'];?>&id_service=<?php echo $isi['id'];?>" target="_blank">
     <button class="btn btn-secondary">
      Print Struk
     </button>

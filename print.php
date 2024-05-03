@@ -8,9 +8,15 @@
 	require 'config.php';
 	include $view;
 	$lihat = new view($config);
-	$toko = $lihat -> toko();
-	$hasil = $lihat -> nota();
-	$hsl = $lihat -> penjualan();
+	$toko = $lihat->toko();
+	$hasil = $lihat->nota();
+	$hsl = $lihat->penjualan();
+    $sql_barang = "SELECT * FROM nota WHERE id_nota = ?";
+    $row_barang = $config->prepare($sql_barang);
+    $row_barang->execute(array($_GET['id_service_baru']));
+    $nota = $row_barang->fetch();
+
+    // var_dump($nota);die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,3 +183,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // Panggil fungsi window.print() saat halaman dimuat
+    window.onload = function() {
+        window.print();
+    };
+</script>

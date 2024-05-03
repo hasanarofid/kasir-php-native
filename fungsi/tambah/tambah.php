@@ -89,8 +89,9 @@ if (!empty($_GET['barang'])) {
     
     
     if (!empty($_GET['jual'])) {
+        // var_dump($_GET);die;
         $id = $_GET['id'];
-
+        // var_dump($id);die;
         // get tabel barang id_barang
         $sql = 'SELECT * FROM barang WHERE id_barang = ?';
         $row = $config->prepare($sql);
@@ -113,10 +114,45 @@ if (!empty($_GET['barang'])) {
             $row1 = $config -> prepare($sql1);
             $row1 -> execute($data1);
 
+            // $id = $config->lastInsertId();
+
+// Redirect to success page with the ID of the new service
+// echo '<script>window.location="../../index.php?page=jual&success=tambah-data&id=' . $id . '"</script>';
+
+
             echo '<script>window.location="../../index.php?page=jual&success=tambah-data"</script>';
         } else {
             echo '<script>alert("Stok Barang Anda Telah Habis !");
 					window.location="../../index.php?page=jual#keranjang"</script>';
         }
     }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['masuk'])) {
+        // var_dump($_POST);die;
+        $id = htmlentities($_POST['id']);
+        $id_barang = htmlentities($_POST['id_barang']);
+        $supplier = htmlentities($_POST['supplier']);
+        $penerima = htmlentities($_POST['penerima']);
+        $jumlah = htmlentities($_POST['jumlah']);
+        $tgl = htmlentities($_POST['tgl']);
+    
+        $data = array($id_barang, $supplier, $penerima, $jumlah, $tgl);
+        $sql = 'INSERT INTO masuk (id_barang, supplier, penerima, jumlah, tgl) 
+                VALUES (?, ?, ?, ?, ?)';
+    
+        $row = $config->prepare($sql);
+        $success = $row->execute($data);
+    
+        if ($success) {
+            echo '<script>window.location="../../index.php?page=masuk&success=tambah-data"</script>';
+        } else {
+            $errorInfo = $row->errorInfo();
+            var_dump($row->errorInfo());die;
+            echo "Gagal menambahkan data: " . $errorInfo[2];die;
+        }
+    }
+    
+  
 }
+
+
+

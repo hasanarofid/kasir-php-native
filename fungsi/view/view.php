@@ -105,6 +105,17 @@ class view
         return $hasil;
     }
 
+    public function barang_masuk()
+    {
+        $sql = "select masuk.*, barang.id_barang, barang.nama_barang
+                from masuk inner join barang on barang.id = masuk.id_barang
+                ORDER BY id DESC";
+        $row = $this-> db -> prepare($sql);
+        $row -> execute();
+        $hasil = $row -> fetchAll();
+        return $hasil;
+    }
+
     public function barang_edit($id)
     {
         $sql = "select barang.*, kategori.id_kategori, kategori.nama_kategori

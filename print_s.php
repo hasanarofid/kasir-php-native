@@ -10,12 +10,13 @@
     $lihat = new view($config);
     $toko = $lihat->toko();
     $id_service = isset($_GET['id_service']) ? $_GET['id_service'] : null;
+    // var_dump($id_service);die;
     
     // Fungsi untuk mengambil data service berdasarkan id_service
     function ser($id_service, $config) {
-        $db = new PDO($config['dsn'], $config['username'], $config['password']);
-        $sql = "SELECT * FROM service WHERE id_service = :id_service";
-        $stmt = $db->prepare($sql);
+        // $db = new PDO($config['dsn'], $config['username'], $config['password']);
+        $sql = "SELECT * FROM service WHERE id = :id_service";
+        $stmt = $config->prepare($sql);
         $stmt->bindParam(':id_service', $id_service, PDO::PARAM_INT);
         $stmt->execute();
         $hasil = $stmt->fetchAll(PDO::FETCH_ASSOC);

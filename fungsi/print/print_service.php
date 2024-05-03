@@ -7,9 +7,120 @@
 </head>
 <body>
     <h4>Data Service</h4>
+    <style>
+        /* Invoice Template */
+#invoice-template {
+    width: 1733.78 px; /* Setengah kertas A4 */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
 
+.invoice-template {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Invoice Header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.invoice-logo {
+    width: 150px;
+    height: auto;
+}
+
+.invoice-info {
+    text-align: right;
+}
+
+/* Invoice Customer */
+.invoice-customer {
+    margin-bottom: 20px;
+}
+
+/* Invoice Table */
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.invoice-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.invoice-footer {
+    text-align: center; /* (Optional) Center text in the footer */
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute space between signature and total */
+    align-items: flex-start; /* Align items vertically (signature top, total top) */
+}
+
+.footer {
+    text-align: center; /* (Optional) Center text in the footer */
+    display: flex; /* Enable flexbox layout */
+    justify-content: space-between; /* Distribute space between signature and total */
+    align-items: flex-start; /* Align items vertically (signature top, total top) */
+}
+
+
+
+.total {
+            text-align: right;
+            font-weight: bold;
+        }
+.signature-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.signature-area {
+    width: 100px;
+    height: 50px;
+    border: 1px dashed #ccc;
+    padding: 5px;
+}
+
+
+    </style>
+    
+    
     <?php
+    @ob_start();
+	session_start();
+	if(!empty($_SESSION['admin'])){ }else{
+		echo '<script>window.location="login.php";</script>';
+        exit;
+	}
 require '../../config.php';
+
+?>
+
+<div id="invoice-template">
+        <div class="invoice-template">
+            <div class="invoice-template">
+                <br>
+                <div class="invoice-header">
+                    <div class="invoice-logo">
+                        <img src="../../assets/img/logo.png" alt="Logo Bosss Printer" width="300px">
+                    </div>
+                    
+                </div>
+
+    <div class="invoice-customer">
+      <?php
 
 // Ambil data service dari database berdasarkan ID yang diterima dari parameter 'bayar'
 $id_service = isset($_GET['bayar']) ? $_GET['bayar'] : null;
@@ -61,8 +172,14 @@ $stmt->execute();
     // Jika variabel $_GET['bayar'] tidak diatur atau kosong, tampilkan pesan kesalahan
     echo "Error: No 'bayar' parameter provided.";
 }
-?>
+      ?>
+    </div>
 
+
+               
+            </div>
+        </div>
+    </div>
 <script>
     // Panggil fungsi window.print() saat halaman dimuat
     window.onload = function() {
